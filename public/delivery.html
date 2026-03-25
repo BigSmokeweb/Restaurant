@@ -18,53 +18,64 @@
     <a href="/catering.html">Catering <span class="badge">New</span></a>
   </nav>
   <div class="header-actions">
-    <a href="/delivery.html" class="btn-delivery" style="background:var(--primary);color:white;border-color:var(--primary)"><i class="fas fa-motorcycle"></i> Delivery/Takeaway</a>
+    <div class="icon-btn btn-cart-toggle"><i class="fas fa-shopping-bag"></i><span class="cart-badge">0</span></div>
+    <a href="#" class="btn-primary" data-reserve style="font-size:13px;padding:10px 18px">Reserve Table</a>
   </div>
 </header>
 
-<section style="background:var(--primary);color:white;padding:80px 40px;text-align:center">
-  <div style="font-family:'Pacifico',cursive;font-size:20px;margin-bottom:12px;opacity:0.9">Craving Mumbra's flavours?</div>
-  <h1 style="font-size:48px;font-weight:800;font-family:'Poppins',sans-serif;margin-bottom:20px">GET IT DELIVERED<br>TO YOUR DOOR</h1>
-  <p style="font-size:18px;opacity:0.9;max-width:500px;margin:0 auto 36px">No minimum order. Super fast delivery. Safety guaranteed.</p>
-  <div style="display:flex;justify-content:center;align-items:center;gap:16px;background:white;border-radius:8px;padding:14px 20px;max-width:500px;margin:0 auto">
-    <i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:20px"></i>
-    <input type="text" placeholder="Enter your delivery address…" style="border:none;outline:none;flex:1;font-size:16px;font-family:inherit">
-    <button class="btn-primary" style="padding:10px 20px;font-size:14px">Find Food</button>
+<section class="section-padding" style="min-height: 80vh;">
+  <div class="container">
+    <div class="section-header">
+      <h1 class="section-title" style="font-size:36px">Complete Your Order</h1>
+      <p class="section-sub">Add your delivery details below to confirm the order</p>
+    </div>
+    
+    <!-- Mobile responsive inline styling for the checkout grid -->
+    <style>
+      #checkoutGrid { display: grid; grid-template-columns: 3fr 2fr; gap: 40px; }
+      @media (max-width: 768px) { #checkoutGrid { grid-template-columns: 1fr; grid-template-areas: "summary" "form"; }
+      #checkoutFormWrapper { grid-area: form; } #checkoutSummaryWrapper { grid-area: summary; } }
+      .checkout-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; }
+    </style>
+
+    <div id="checkoutGrid">
+      <div id="checkoutFormWrapper">
+        <div id="checkoutAlert" class="alert" style="margin-bottom:20px"></div>
+        <form id="checkoutForm" style="background:var(--bg-card);padding:32px;border-radius:var(--radius-md);border:1px solid var(--border)">
+          <h3 style="margin-bottom:20px;font-size:18px">Delivery Address</h3>
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input class="form-input" id="coName" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input class="form-input" id="coPhone" required placeholder="+91 98765 43210" type="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Complete Address *</label>
+            <textarea class="form-textarea" id="coAddress" required placeholder="Flat/House No, Building, Street, Area..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Special Instructions</label>
+            <textarea class="form-textarea" id="coInstructions" placeholder="e.g., Leave at the door, less spicy..." style="min-height:60px"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;font-size:16px;padding:14px;margin-top:10px" id="checkoutBtn">Place Order</button>
+        </form>
+      </div>
+
+      <div id="checkoutSummaryWrapper">
+        <div style="background:var(--bg-cream);padding:32px;border-radius:var(--radius-md);position:sticky;top:100px">
+          <h3 style="margin-bottom:20px;font-size:18px">Order Summary</h3>
+          <div id="checkoutItems"></div>
+          <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:20px;display:flex;justify-content:space-between;font-size:20px;font-weight:700">
+            <span>Total to Pay</span>
+            <span id="checkoutTotalVal">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- Why UBQ Delivery -->
-<div style="padding:60px 40px">
-  <div class="section-header centered" style="text-align:center;margin-bottom:40px"><h2 class="section-title">Why Order From Us?</h2></div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:900px;margin:0 auto;text-align:center">
-    <div style="padding:40px 20px;background:var(--cream);border-radius:var(--radius-lg)">
-      <div style="font-size:48px;margin-bottom:20px">🚴</div>
-      <h3 style="margin-bottom:10px">Super Fast Delivery</h3>
-      <p style="font-size:14px;color:var(--grey)">Hot food at your door in under 30 minutes within Mumbra.</p>
-    </div>
-    <div style="padding:40px 20px;background:var(--cream);border-radius:var(--radius-lg)">
-      <div style="font-size:48px;margin-bottom:20px">🍱</div>
-      <h3 style="margin-bottom:10px">No Minimum Order</h3>
-      <p style="font-size:14px;color:var(--grey)">Order as little or as much as you want — no restrictions.</p>
-    </div>
-    <div style="padding:40px 20px;background:var(--cream);border-radius:var(--radius-lg)">
-      <div style="font-size:48px;margin-bottom:20px">🛡️</div>
-      <h3 style="margin-bottom:10px">Safety First</h3>
-      <p style="font-size:14px;color:var(--grey)">All food is hygienically packaged and handled by trained staff.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Quick Order via WhatsApp -->
-<div style="background:var(--cream-dark);padding:60px 40px;text-align:center">
-  <h2 style="font-size:30px;margin-bottom:16px">Quick Order via WhatsApp</h2>
-  <p style="color:var(--grey);margin-bottom:30px;max-width:500px;margin:0 auto 30px">Send us your order on WhatsApp and we'll confirm within minutes!</p>
-  <a href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20order%20from%20Mumbra%20Restaurant." target="_blank"
-     style="display:inline-flex;align-items:center;gap:12px;background:#25D366;color:white;padding:16px 36px;border-radius:50px;font-size:18px;font-weight:700;text-decoration:none">
-    <i class="fab fa-whatsapp" style="font-size:28px"></i> Order on WhatsApp
-  </a>
-  <div style="margin-top:20px;font-size:13px;color:var(--grey)">📞 Call us: <strong>+91 98765 43210</strong> | Available 6 AM – 11:30 PM</div>
-</div>
 
 <!-- Popular Delivery Items -->
 <div style="padding:60px 40px">
@@ -81,6 +92,26 @@
 <div class="whatsapp-float">📱</div>
 <div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
 <footer><div class="footer-bottom" style="border-top:1px solid var(--border);padding:24px 40px;"><p>© 2026 Mumbra Restaurant | Delivery covers Mumbra, Kausa, Shilphata, Diva areas.</p></div></footer>
+
+<!-- CART DRAWER MODAL -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>Your Food Cart</h2>
+      <div class="cart-close" id="cartClose"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Injected by main.js -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>To Pay</span>
+        <span id="cartTotalVal">₹0</span>
+      </div>
+      <a href="/delivery.html" class="btn-primary" style="width:100%;font-size:16px;padding:14px">Proceed to Checkout</a>
+    </div>
+  </div>
+</div>
 <script src="js/main.js"></script>
 </body>
 </html>

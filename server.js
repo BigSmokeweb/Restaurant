@@ -24,7 +24,7 @@ if (!IS_VERCEL && !fs.existsSync(path.join(__dirname, 'database'))) {
 // Initialize JSON DB
 function readDB() {
   if (!fs.existsSync(DB_FILE)) {
-    const init = { reservations: [], contacts: [], nextId: { reservation: 1, contact: 1 } };
+    const init = { reservations: [], contacts: [], orders: [], nextId: { reservation: 1, contact: 1, order: 1 } };
     fs.writeFileSync(DB_FILE, JSON.stringify(init, null, 2));
     return init;
   }
@@ -141,6 +141,38 @@ app.post('/api/contact', (req, res) => {
   res.json({ success: true, message: 'Thank you! Our events team will contact you within 24 hours.' });
 });
 
+app.post('/api/orders', (req, res) => {
+  const { customer, cart, total } = req.body;
+  if (!customer || !customer.name || !customer.phone || !customer.address || !cart || cart.length === 0) {
+    return res.status(400).json({ success: false, message: 'Invalid order details. Name, phone, address and items are required.' });
+  }
+
+  const db = readDB();
+  const order = {
+    id: db.nextId.order++,
+    customer: {
+      name: customer.name,
+      phone: customer.phone,
+      address: customer.address,
+      instructions: customer.instructions || ''
+    },
+    items: cart,
+    total: total,
+    status: 'received',
+    created_at: new Date().toISOString()
+  };
+  
+  // Ensure the orders array exists if migrating from older db
+  if (!db.orders) db.orders = [];
+  if (db.nextId.order === undefined) db.nextId.order = (db.orders.length > 0 ? db.orders[db.orders.length - 1].id + 1 : 1);
+
+  db.orders.push(order);
+  writeDB(db);
+
+  console.log(`🛍️ New Order #${order.id}: ${customer.name} (${customer.phone}) — ₹${total}`);
+  res.json({ success: true, message: 'Order placed successfully! Preparing your food now.', orderId: order.id });
+});
+
 // SPA fallback
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -162,6 +194,7 @@ if (!IS_VERCEL) {
     POST /api/reservations
     GET  /api/reservations
     POST /api/contact
+    POST /api/orders
 `);
   });
 }

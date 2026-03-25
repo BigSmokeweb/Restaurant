@@ -18,6 +18,7 @@
     <a href="/catering.html">Catering <span class="badge">New</span></a>
   </nav>
   <div class="header-actions">
+    <div class="icon-btn btn-cart-toggle"><i class="fas fa-shopping-bag"></i><span class="cart-badge">0</span></div>
     <a href="#" class="btn-primary" data-reserve style="font-size:13px;padding:10px 18px">Reserve Table</a>
   </div>
 </header>
@@ -39,44 +40,44 @@
   <!-- Starters -->
   <div class="menu-section" id="tab-starters">
     <div class="menu-grid">
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Tikka</div><div class="menu-item-desc">Marinated cottage cheese grilled on charcoal with peppers and onions</div></div><div class="menu-item-price">₹249</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Seekh Kebab</div><div class="menu-item-desc">Minced chicken with herbs and spices — live grilled to perfection</div></div><div class="menu-item-price">₹329</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Veg Manchurian (Dry)</div><div class="menu-item-desc">Crispy vegetable balls tossed in ginger-soy glaze</div></div><div class="menu-item-price">₹229</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Drums of Heaven</div><div class="menu-item-desc">Chicken lollipops in fiery Schezwan sauce</div></div><div class="menu-item-price">₹349</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Hara Bhara Kebab</div><div class="menu-item-desc">Spinach & pea patty, pan-grilled with mint chutney</div></div><div class="menu-item-price">₹209</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Fish Tikka</div><div class="menu-item-desc">Marinated fish fillet grilled with Ajwain and spices</div></div><div class="menu-item-price">₹379</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Tikka</div><div class="menu-item-desc">Marinated cottage cheese grilled on charcoal</div></div><div style="text-align:right"><div class="menu-item-price">₹249</div><button class="btn-add" onclick="addToCart('s1','Paneer Tikka',249,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Seekh Kebab</div><div class="menu-item-desc">Minced chicken with herbs and spices</div></div><div style="text-align:right"><div class="menu-item-price">₹329</div><button class="btn-add" onclick="addToCart('s2','Chicken Seekh Kebab',329,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Veg Manchurian (Dry)</div><div class="menu-item-desc">Crispy vegetable balls tossed in ginger-soy glaze</div></div><div style="text-align:right"><div class="menu-item-price">₹229</div><button class="btn-add" onclick="addToCart('s3','Veg Manchurian (Dry)',229,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Drums of Heaven</div><div class="menu-item-desc">Chicken lollipops in fiery Schezwan sauce</div></div><div style="text-align:right"><div class="menu-item-price">₹349</div><button class="btn-add" onclick="addToCart('s4','Drums of Heaven',349,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Hara Bhara Kebab</div><div class="menu-item-desc">Spinach & pea patty, pan-grilled with mint chutney</div></div><div style="text-align:right"><div class="menu-item-price">₹209</div><button class="btn-add" onclick="addToCart('s5','Hara Bhara Kebab',209,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Fish Tikka</div><div class="menu-item-desc">Marinated fish fillet grilled with Ajwain and spices</div></div><div style="text-align:right"><div class="menu-item-price">₹379</div><button class="btn-add" onclick="addToCart('s6','Fish Tikka',379,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
     </div>
   </div>
 
   <!-- Mains -->
   <div class="menu-section" id="tab-mains" style="display:none">
     <div class="menu-grid">
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Mumbra Mutton Biryani</div><div class="menu-item-desc">Slow-cooked dum biryani with tender mutton pieces and saffron</div></div><div class="menu-item-price">₹449</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Butter Chicken</div><div class="menu-item-desc">Classic North Indian tomato-cream chicken curry</div></div><div class="menu-item-price">₹379</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Dal Makhani</div><div class="menu-item-desc">Black lentils slow-cooked overnight with cream and butter</div></div><div class="menu-item-price">₹269</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Lababdar</div><div class="menu-item-desc">Rich cottage cheese in tangy onion-tomato cashew gravy</div></div><div class="menu-item-price">₹299</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Schezwan Fried Rice</div><div class="menu-item-desc">Wok-tossed rice in fiery Schezwan sauce</div></div><div class="menu-item-price">₹249</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Biryani</div><div class="menu-item-desc">Aromatic long-grain rice with spiced chicken pieces</div></div><div class="menu-item-price">₹399</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Mumbra Mutton Biryani</div><div class="menu-item-desc">Slow-cooked dum biryani with tender mutton pieces</div></div><div style="text-align:right"><div class="menu-item-price">₹449</div><button class="btn-add" onclick="addToCart('m1','Mumbra Mutton Biryani',449,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Butter Chicken</div><div class="menu-item-desc">Classic North Indian tomato-cream chicken curry</div></div><div style="text-align:right"><div class="menu-item-price">₹379</div><button class="btn-add" onclick="addToCart('m2','Butter Chicken',379,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Dal Makhani</div><div class="menu-item-desc">Black lentils slow-cooked overnight with cream</div></div><div style="text-align:right"><div class="menu-item-price">₹269</div><button class="btn-add" onclick="addToCart('m3','Dal Makhani',269,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Lababdar</div><div class="menu-item-desc">Rich cottage cheese in tangy onion-tomato cashew gravy</div></div><div style="text-align:right"><div class="menu-item-price">₹299</div><button class="btn-add" onclick="addToCart('m4','Paneer Lababdar',299,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Schezwan Fried Rice</div><div class="menu-item-desc">Wok-tossed rice in fiery Schezwan sauce</div></div><div style="text-align:right"><div class="menu-item-price">₹249</div><button class="btn-add" onclick="addToCart('m5','Schezwan Fried Rice',249,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Biryani</div><div class="menu-item-desc">Aromatic long-grain rice with spiced chicken pieces</div></div><div style="text-align:right"><div class="menu-item-price">₹399</div><button class="btn-add" onclick="addToCart('m6','Chicken Biryani',399,'non-veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
     </div>
   </div>
 
   <!-- Desserts -->
   <div class="menu-section" id="tab-desserts" style="display:none">
     <div class="menu-grid">
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Gulab Jamun</div><div class="menu-item-desc">Soft milk-solid dumplings soaked in rose sugar syrup</div></div><div class="menu-item-price">₹149</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Shahi Tukda</div><div class="menu-item-desc">Fried bread pudding with saffron-flavoured rabri</div></div><div class="menu-item-price">₹179</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Kulfi Falooda</div><div class="menu-item-desc">Traditional Indian ice cream with rose syrup and vermicelli</div></div><div class="menu-item-price">₹199</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Chocolate Brownie</div><div class="menu-item-desc">Warm fudge brownie with vanilla ice cream</div></div><div class="menu-item-price">₹219</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Gulab Jamun</div><div class="menu-item-desc">Soft milk-solid dumplings soaked in rose sugar syrup</div></div><div style="text-align:right"><div class="menu-item-price">₹149</div><button class="btn-add" onclick="addToCart('d1','Gulab Jamun',149,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Shahi Tukda</div><div class="menu-item-desc">Fried bread pudding with saffron-flavoured rabri</div></div><div style="text-align:right"><div class="menu-item-price">₹179</div><button class="btn-add" onclick="addToCart('d2','Shahi Tukda',179,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Kulfi Falooda</div><div class="menu-item-desc">Traditional Indian ice cream with rose syrup and vermicelli</div></div><div style="text-align:right"><div class="menu-item-price">₹199</div><button class="btn-add" onclick="addToCart('d3','Kulfi Falooda',199,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Chocolate Brownie</div><div class="menu-item-desc">Warm fudge brownie with vanilla ice cream</div></div><div style="text-align:right"><div class="menu-item-price">₹219</div><button class="btn-add" onclick="addToCart('d4','Chocolate Brownie',219,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
     </div>
   </div>
 
   <!-- Drinks -->
   <div class="menu-section" id="tab-drinks" style="display:none">
     <div class="menu-grid">
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Masala Chai</div><div class="menu-item-desc">Traditional ginger-cardamom tea in a clay kullhad</div></div><div class="menu-item-price">₹30</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Lime Soda</div><div class="menu-item-desc">Sweet or salted lime soda, freshly prepared</div></div><div class="menu-item-price">₹60</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Mango Lassi</div><div class="menu-item-desc">Thick yogurt-based mango smoothie</div></div><div class="menu-item-price">₹99</div></div>
-      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Juices</div><div class="menu-item-desc">Seasonal — Orange, Watermelon, Pomegranate</div></div><div class="menu-item-price">₹79</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Masala Chai</div><div class="menu-item-desc">Traditional ginger-cardamom tea in a clay kullhad</div></div><div style="text-align:right"><div class="menu-item-price">₹30</div><button class="btn-add" onclick="addToCart('dr1','Masala Chai',30,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Lime Soda</div><div class="menu-item-desc">Sweet or salted lime soda, freshly prepared</div></div><div style="text-align:right"><div class="menu-item-price">₹60</div><button class="btn-add" onclick="addToCart('dr2','Fresh Lime Soda',60,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Mango Lassi</div><div class="menu-item-desc">Thick yogurt-based mango smoothie</div></div><div style="text-align:right"><div class="menu-item-price">₹99</div><button class="btn-add" onclick="addToCart('dr3','Mango Lassi',99,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Juices</div><div class="menu-item-desc">Seasonal — Orange, Watermelon, Pomegranate</div></div><div style="text-align:right"><div class="menu-item-price">₹79</div><button class="btn-add" onclick="addToCart('dr4','Fresh Juices',79,'veg')">Add <i class="fas fa-plus" style="font-size:10px;margin-left:4px"></i></button></div></div>
     </div>
   </div>
 </div>
@@ -84,6 +85,26 @@
 <div class="whatsapp-float">📱</div>
 <div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
 <footer><div class="footer-bottom" style="border-top:1px solid var(--border);padding:24px 40px;"><p>© 2026 Mumbra Restaurant. All prices are inclusive of taxes.</p></div></footer>
+
+<!-- CART DRAWER MODAL -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h2>Your Food Cart</h2>
+      <div class="cart-close" id="cartClose"><i class="fas fa-times"></i></div>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Injected by main.js -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>To Pay</span>
+        <span id="cartTotalVal">₹0</span>
+      </div>
+      <a href="/delivery.html" class="btn-primary" style="width:100%;font-size:16px;padding:14px">Proceed to Checkout</a>
+    </div>
+  </div>
+</div>
 
 <script src="js/main.js"></script>
 <script>

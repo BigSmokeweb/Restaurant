@@ -183,6 +183,190 @@ function initCounters() {
 }
 
 // =====================
+// Shopping Cart Logic
+// =====================
+let cart = JSON.parse(localStorage.getItem('mumbra_cart') || '[]');
+
+function saveCart() {
+  localStorage.setItem('mumbra_cart', JSON.stringify(cart));
+  updateCartUI();
+}
+
+function addToCart(id, name, price, type) {
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, name, price: parseInt(price), type, qty: 1 });
+  }
+  saveCart();
+  document.getElementById('cartOverlay')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateCartQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.id !== id);
+  }
+  saveCart();
+}
+
+function updateCartUI() {
+  // Update badges
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.querySelectorAll('.cart-badge').forEach(b => b.textContent = totalItems);
+
+  // Update Drawer
+  const body = document.getElementById('cartBody');
+  const totalEl = document.getElementById('cartTotalVal');
+  if (!body) return;
+
+  if (cart.length === 0) {
+    body.innerHTML = `
+      <div class="empty-cart">
+        <i class="fas fa-shopping-basket"></i>
+        <h3>Your cart is empty</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Add some delicious items from our menu!</p>
+      </div>
+    `;
+    if (totalEl) totalEl.textContent = '₹0';
+    return;
+  }
+
+  let total = 0;
+  body.innerHTML = cart.map(item => {
+    total += item.price * item.qty;
+    const isVeg = item.type === 'veg';
+    const iconClass = isVeg ? 'veg-icon' : 'non-veg-icon';
+    return `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name"><div class="${iconClass}" style="margin-bottom:0;margin-right:6px"></div>${item.name}</div>
+          <div class="cart-item-price">₹${item.price}</div>
+        </div>
+        <div class="cart-item-actions">
+          <button class="qty-btn" onclick="updateCartQty('${item.id}', -1)">−</button>
+          <span style="font-weight:600;font-size:14px;min-width:16px;text-align:center">${item.qty}</span>
+          <button class="qty-btn" onclick="updateCartQty('${item.id}', 1)">+</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  if (totalEl) totalEl.textContent = `₹${total}`;
+}
+
+function initCart() {
+  updateCartUI();
+  
+  const overlay = document.getElementById('cartOverlay');
+  if (!overlay) return;
+
+  document.querySelectorAll('.btn-cart-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeCart();
+  });
+  document.getElementById('cartClose')?.addEventListener('click', closeCart);
+
+  function closeCart() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// Global expose for inline onclick attributes
+window.addToCart = addToCart;
+window.updateCartQty = updateCartQty;
+
+// =====================
+// Checkout Logic
+// =====================
+function initCheckout() {
+  const summaryEl = document.getElementById('checkoutItems');
+  const formEl = document.getElementById('checkoutForm');
+  
+  if (summaryEl) {
+    if (cart.length === 0) {
+      summaryEl.innerHTML = '<p style="color:var(--text-muted)">Your cart is empty.</p>';
+      document.getElementById('checkoutTotalVal').textContent = '₹0';
+      if(formEl) formEl.querySelector('button').disabled = true;
+    } else {
+      let total = 0;
+      summaryEl.innerHTML = cart.map(item => {
+        total += item.price * item.qty;
+        return `
+          <div class="checkout-item">
+            <span>${item.qty}x ${item.name}</span>
+            <span>₹${item.price * item.qty}</span>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('checkoutTotalVal').textContent = `₹${total}`;
+    }
+  }
+
+  if (formEl) {
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const alertBox = document.getElementById('checkoutAlert');
+      const btn = document.getElementById('checkoutBtn');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      let total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      const customer = {
+        name: document.getElementById('coName').value,
+        phone: document.getElementById('coPhone').value,
+        address: document.getElementById('coAddress').value,
+        instructions: document.getElementById('coInstructions').value
+      };
+
+      try {
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customer, cart, total })
+        });
+        const data = await res.json();
+        
+        if (data.success) {
+          alertBox.className = 'alert alert-success';
+          alertBox.textContent = `Order Confirmed! Your Order ID is #${data.orderId}. We are preparing your food.`;
+          formEl.reset();
+          cart = [];
+          saveCart();
+          summaryEl.innerHTML = '<p style="color:var(--text-muted)">Your cart is empty.</p>';
+          document.getElementById('checkoutTotalVal').textContent = '₹0';
+          btn.style.display = 'none';
+        } else {
+          alertBox.className = 'alert alert-error';
+          alertBox.textContent = data.message || 'Failed to place order.';
+          btn.disabled = false;
+          btn.textContent = 'Place Order';
+        }
+      } catch (err) {
+        alertBox.className = 'alert alert-error';
+        alertBox.textContent = 'Network error. Please try again.';
+        btn.disabled = false;
+        btn.textContent = 'Place Order';
+      }
+    });
+  }
+}
+
+// =====================
 // Init
 // =====================
 document.addEventListener('DOMContentLoaded', () => {
@@ -190,6 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadDeals();
   initReservation();
   initCounters();
+  initCart();
+  initCheckout();
 
   // WhatsApp
   document.querySelector('.whatsapp-float')?.addEventListener('click', () => {
