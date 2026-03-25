@@ -69,6 +69,11 @@
     padding: 0;
 }
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -80,7 +85,6 @@ body {
     color: var(--text-dark);
     background: var(--bg-main);
     line-height: 1.6;
-    overflow-x: hidden;
     font-size: 14px;
 }
 
@@ -1604,21 +1608,27 @@ footer {
 @media (max-width: 768px) {
     .header {
         height: var(--header-height-mobile);
-        gap: 8px;
+        gap: 6px;
+        padding: 0 10px;
     }
 
     .header-logo img {
-        height: 36px;
+        height: 28px;
     }
 
     .header-actions {
-        gap: 6px;
+        gap: 4px;
     }
 
     .icon-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
+        width: 28px;
+        height: 28px;
+        font-size: 15px;
+    }
+
+    .hamburger-btn {
+        padding: 6px 10px;
+        font-size: 14px;
     }
 
     .hero-slide {
@@ -1692,7 +1702,8 @@ footer {
     }
 
     .reserve-panel {
-        width: 100vw;
+        width: 100%;
+        max-width: 100vw;
     }
 
     .page-hero {
@@ -1738,18 +1749,41 @@ footer {
 
     /* Footer */
     footer {
-        padding: 40px 16px 16px;
+        padding: 40px 16px 20px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
     }
 
     .footer-apps {
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: 24px !important;
     }
 
     .footer-bottom {
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
         text-align: center;
+    }
+
+    /* Floating buttons resize */
+    .whatsapp-float {
+        width: 44px;
+        height: 44px;
+        bottom: 70px;
+        right: 16px;
+        font-size: 22px;
+    }
+
+    .scroll-top {
+        width: 38px;
+        height: 38px;
+        bottom: 20px;
+        right: 16px;
+        font-size: 16px;
     }
 
     /* City / Restaurant cards */
@@ -1823,11 +1857,6 @@ footer {
         font-size: 11px;
     }
 
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
     .footer-brand p {
         max-width: 100%;
     }
@@ -1880,7 +1909,7 @@ footer {
     }
 
     .header-logo img {
-        height: 32px;
+        height: 26px;
     }
 
     .hamburger-btn {
