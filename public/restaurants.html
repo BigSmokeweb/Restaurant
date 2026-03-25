@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Restaurants | Mumbra Restaurant</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="header">
+  <a class="header-logo" href="/"><img src="assets/logo.png" alt="Mumbra Restaurant"></a>
+  <nav class="header-nav">
+    <a href="/deals.html">Happiness card</a>
+    <a href="/menu.html">Whats on the Menu</a>
+    <a href="/deals.html">Deals</a>
+    <a href="/restaurants.html" style="color:var(--primary)">Restaurants</a>
+    <a href="/catering.html">Catering <span class="badge">New</span></a>
+  </nav>
+  <div class="header-actions">
+    <a href="/delivery.html" class="btn-delivery"><i class="fas fa-motorcycle"></i> Delivery/Takeaway</a>
+    <div class="btn-restaurant"><i class="fas fa-map-marker-alt" style="color:var(--primary)"></i> <span>Mumbra, Thane</span></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="/">Home</a> / Restaurants</div>
+  <h1>Our Restaurants</h1>
+  <p>Find a Mumbra Restaurant near you in Thane district</p>
+</section>
+
+<div class="page-content">
+  <div class="search-bar">
+    <i class="fas fa-search"></i>
+    <input type="text" id="searchInput" placeholder="Search by area or city…" oninput="filterOutlets(this.value)">
+  </div>
+
+  <div class="city-grid" id="outletsGrid" style="grid-template-columns:repeat(3,1fr)">
+
+    <!-- Outlet 1 - Real -->
+    <div class="outlet-card" data-name="mumbra railway station">
+      <div class="outlet-map"><i class="fas fa-map-marker-alt"></i></div>
+      <div class="outlet-body">
+        <div class="outlet-name">Mumbra Restaurant – Main Branch</div>
+        <div class="outlet-address">Railway Station Road, Near Mumbra Station, Mumbra, Thane – 400612</div>
+        <div class="outlet-hours">🟢 Open Now · 6:00 AM – 11:30 PM</div>
+        <div class="outlet-actions">
+          <a href="#" class="outlet-btn-primary" data-reserve>Reserve Table</a>
+          <a href="https://maps.app.goo.gl/9BEttu7qVVthdAnX9" target="_blank" class="outlet-btn-outline">Directions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outlet 2 - Coming Soon -->
+    <div class="outlet-card" data-name="thane west">
+      <div class="outlet-map" style="background:#f0f0f0;color:#aaa"><i class="fas fa-clock"></i></div>
+      <div class="outlet-body">
+        <div class="outlet-name">Thane West (Coming Soon)</div>
+        <div class="outlet-address">Viviana Mall Area, Thane West, Thane – 400601</div>
+        <div class="outlet-hours" style="color:var(--grey)">🕐 Opening 2026</div>
+        <div class="outlet-actions">
+          <a href="/catering.html" class="outlet-btn-outline" style="flex:1;text-align:center">Get Notified</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outlet 3 - Coming Soon -->
+    <div class="outlet-card" data-name="kalyan">
+      <div class="outlet-map" style="background:#f0f0f0;color:#aaa"><i class="fas fa-clock"></i></div>
+      <div class="outlet-body">
+        <div class="outlet-name">Kalyan (Coming Soon)</div>
+        <div class="outlet-address">Near Kalyan Station, Kalyan, Thane – 421301</div>
+        <div class="outlet-hours" style="color:var(--grey)">🕐 Opening Soon</div>
+        <div class="outlet-actions">
+          <a href="/catering.html" class="outlet-btn-outline" style="flex:1;text-align:center">Get Notified</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="reserveOverlay">
+  <div class="reserve-panel">
+    <div class="panel-header"><h2>Reserve a Table</h2><span class="panel-close" id="closePanel">✕</span></div>
+    <div class="panel-body">
+      <div id="alertSuccess" class="alert alert-success"></div>
+      <div id="alertError" class="alert alert-error"></div>
+      <form id="reservationForm">
+        <input type="hidden" id="mealType" name="meal_type" value="lunch">
+        <input type="hidden" id="timeSlot" name="time_slot" value="">
+        <input type="hidden" id="guestsVeg" name="guests_veg" value="0">
+        <input type="hidden" id="guestsNonVeg" name="guests_non_veg" value="0">
+        <div class="form-group"><label class="form-label">Full Name *</label><input class="form-input" id="resName" name="name" required placeholder="Your name"></div>
+        <div class="form-group"><label class="form-label">Mobile *</label><input class="form-input" id="resPhone" name="phone" required placeholder="+91 XXXXX XXXXX" type="tel"></div>
+        <div class="form-group"><label class="form-label">Date *</label><input class="form-input" id="resDate" name="date" type="date" required></div>
+        <label class="form-label">Meal</label>
+        <div class="meal-toggle"><button type="button" class="meal-btn active" data-meal="lunch">🌤 Lunch</button><button type="button" class="meal-btn" data-meal="dinner">🌙 Dinner</button></div>
+        <label class="form-label">Time Slot</label>
+        <div class="time-slots" id="timeSlots"></div>
+        <label class="form-label">Guests</label>
+        <div class="guest-row" data-counter="Veg"><div class="guest-label">Veg</div><div class="counter"><button type="button" class="counter-btn counter-minus">−</button><span class="counter-val">0</span><button type="button" class="counter-btn counter-plus">+</button></div></div>
+        <div class="guest-row" data-counter="NonVeg"><div class="guest-label">Non-Veg</div><div class="counter"><button type="button" class="counter-btn counter-minus">−</button><span class="counter-val">0</span><button type="button" class="counter-btn counter-plus">+</button></div></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:20px">Confirm Reservation</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="whatsapp-float">📱</div>
+<div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <div class="footer-bottom" style="border-top:none;padding:30px 0 0">
+    <p>© 2026 Mumbra Restaurant | Railway Station Road, Mumbra, Thane</p>
+    <div class="footer-social" style="margin:0">
+      <a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/reservation.js"></script>
+<script>
+function filterOutlets(query) {
+  const q = query.toLowerCase();
+  document.querySelectorAll('.outlet-card').forEach(card => {
+    const name = card.dataset.name || '';
+    card.style.display = name.includes(q) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

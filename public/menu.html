@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Menu | Mumbra Restaurant</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header class="header">
+  <a class="header-logo" href="/"><img src="assets/logo.png" alt="Mumbra Restaurant"></a>
+  <nav class="header-nav">
+    <a href="/deals.html">Happiness card</a>
+    <a href="/menu.html" style="color:var(--primary)">Whats on the Menu</a>
+    <a href="/deals.html">Deals</a>
+    <a href="/restaurants.html">Restaurants</a>
+    <a href="/catering.html">Catering <span class="badge">New</span></a>
+  </nav>
+  <div class="header-actions">
+    <a href="#" class="btn-primary" data-reserve style="font-size:13px;padding:10px 18px">Reserve Table</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="/">Home</a> / Menu</div>
+  <h1>Our Full Menu</h1>
+  <p>From live-grilled starters to indulgent desserts — all dishes prepared fresh daily.</p>
+</section>
+
+<div class="page-content" id="menuContent">
+  <div class="menu-tabs">
+    <div class="menu-tab active" onclick="showTab('starters',this)">🔥 Starters</div>
+    <div class="menu-tab" onclick="showTab('mains',this)">🍛 Main Course</div>
+    <div class="menu-tab" onclick="showTab('desserts',this)">🍮 Desserts</div>
+    <div class="menu-tab" onclick="showTab('drinks',this)">🥤 Drinks</div>
+  </div>
+
+  <!-- Starters -->
+  <div class="menu-section" id="tab-starters">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Tikka</div><div class="menu-item-desc">Marinated cottage cheese grilled on charcoal with peppers and onions</div></div><div class="menu-item-price">₹249</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Seekh Kebab</div><div class="menu-item-desc">Minced chicken with herbs and spices — live grilled to perfection</div></div><div class="menu-item-price">₹329</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Veg Manchurian (Dry)</div><div class="menu-item-desc">Crispy vegetable balls tossed in ginger-soy glaze</div></div><div class="menu-item-price">₹229</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Drums of Heaven</div><div class="menu-item-desc">Chicken lollipops in fiery Schezwan sauce</div></div><div class="menu-item-price">₹349</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Hara Bhara Kebab</div><div class="menu-item-desc">Spinach & pea patty, pan-grilled with mint chutney</div></div><div class="menu-item-price">₹209</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Fish Tikka</div><div class="menu-item-desc">Marinated fish fillet grilled with Ajwain and spices</div></div><div class="menu-item-price">₹379</div></div>
+    </div>
+  </div>
+
+  <!-- Mains -->
+  <div class="menu-section" id="tab-mains" style="display:none">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Mumbra Mutton Biryani</div><div class="menu-item-desc">Slow-cooked dum biryani with tender mutton pieces and saffron</div></div><div class="menu-item-price">₹449</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Butter Chicken</div><div class="menu-item-desc">Classic North Indian tomato-cream chicken curry</div></div><div class="menu-item-price">₹379</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Dal Makhani</div><div class="menu-item-desc">Black lentils slow-cooked overnight with cream and butter</div></div><div class="menu-item-price">₹269</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Paneer Lababdar</div><div class="menu-item-desc">Rich cottage cheese in tangy onion-tomato cashew gravy</div></div><div class="menu-item-price">₹299</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Schezwan Fried Rice</div><div class="menu-item-desc">Wok-tossed rice in fiery Schezwan sauce</div></div><div class="menu-item-price">₹249</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="non-veg-icon"></div><div class="menu-item-name">Chicken Biryani</div><div class="menu-item-desc">Aromatic long-grain rice with spiced chicken pieces</div></div><div class="menu-item-price">₹399</div></div>
+    </div>
+  </div>
+
+  <!-- Desserts -->
+  <div class="menu-section" id="tab-desserts" style="display:none">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Gulab Jamun</div><div class="menu-item-desc">Soft milk-solid dumplings soaked in rose sugar syrup</div></div><div class="menu-item-price">₹149</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Shahi Tukda</div><div class="menu-item-desc">Fried bread pudding with saffron-flavoured rabri</div></div><div class="menu-item-price">₹179</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Kulfi Falooda</div><div class="menu-item-desc">Traditional Indian ice cream with rose syrup and vermicelli</div></div><div class="menu-item-price">₹199</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Chocolate Brownie</div><div class="menu-item-desc">Warm fudge brownie with vanilla ice cream</div></div><div class="menu-item-price">₹219</div></div>
+    </div>
+  </div>
+
+  <!-- Drinks -->
+  <div class="menu-section" id="tab-drinks" style="display:none">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Masala Chai</div><div class="menu-item-desc">Traditional ginger-cardamom tea in a clay kullhad</div></div><div class="menu-item-price">₹30</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Lime Soda</div><div class="menu-item-desc">Sweet or salted lime soda, freshly prepared</div></div><div class="menu-item-price">₹60</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Mango Lassi</div><div class="menu-item-desc">Thick yogurt-based mango smoothie</div></div><div class="menu-item-price">₹99</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="veg-icon"></div><div class="menu-item-name">Fresh Juices</div><div class="menu-item-desc">Seasonal — Orange, Watermelon, Pomegranate</div></div><div class="menu-item-price">₹79</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="whatsapp-float">📱</div>
+<div class="scroll-top"><i class="fas fa-arrow-up"></i></div>
+<footer><div class="footer-bottom" style="border-top:1px solid var(--border);padding:24px 40px;"><p>© 2026 Mumbra Restaurant. All prices are inclusive of taxes.</p></div></footer>
+
+<script src="js/main.js"></script>
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.menu-section').forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).style.display = '';
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
