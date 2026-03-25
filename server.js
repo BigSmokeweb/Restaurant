@@ -5,7 +5,10 @@ const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
-const DB_FILE = path.join(__dirname, 'database', 'mumbra.json');
+const IS_VERCEL = process.env.VERCEL === '1';
+const DB_FILE = IS_VERCEL
+  ? path.join('/tmp', 'mumbra.json')
+  : path.join(__dirname, 'database', 'mumbra.json');
 
 // Middleware
 app.use(cors());
@@ -13,8 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ensure DB directory exists
-if (!fs.existsSync(path.join(__dirname, 'database'))) {
+// Ensure DB directory exists (skip on Vercel — uses /tmp)
+if (!IS_VERCEL && !fs.existsSync(path.join(__dirname, 'database'))) {
   fs.mkdirSync(path.join(__dirname, 'database'));
 }
 
@@ -143,8 +146,13 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`
+// Export for Vercel serverless
+module.exports = app;
+
+// Only listen locally
+if (!IS_VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`
 🍽️  Mumbra Restaurant Server  →  http://localhost:${PORT}
 📂  Database: ${DB_FILE}
 📋  API:
@@ -155,4 +163,5 @@ app.listen(PORT, () => {
     GET  /api/reservations
     POST /api/contact
 `);
-});
+  });
+}
