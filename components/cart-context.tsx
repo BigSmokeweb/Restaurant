@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useCallback, useMemo } from "react"
+import { createContext, useContext, useState, useCallback, useMemo, useEffect } from "react"
 import type { MenuItem } from "@/lib/data"
 import type { OrderItem } from "@/lib/store"
 
@@ -16,8 +16,30 @@ type CartContextValue = {
 
 const CartContext = createContext<CartContextValue | null>(null)
 
+const CART_STORAGE_KEY = "mumbra-cart"
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<OrderItem[]>([])
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem(CART_STORAGE_KEY)
+      if (stored) setItems(JSON.parse(stored))
+    } catch {
+      // ignore corrupt storage
+    }
+    setHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hydrated) return
+    try {
+      sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+    } catch {
+      // storage unavailable
+    }
+  }, [items, hydrated])
 
   const addItem = useCallback((item: MenuItem) => {
     setItems((prev) => {

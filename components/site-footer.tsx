@@ -28,13 +28,15 @@ export function SiteFooter() {
     <footer className="bg-secondary text-secondary-foreground mt-16">
       <div className="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="md:col-span-2 flex flex-col gap-4">
-          <Image
-            src="/assets/logo.png"
-            alt="Mumbra Restaurant"
-            width={140}
-            height={48}
-            className="h-12 w-auto brightness-0 invert"
-          />
+          <div className="inline-flex w-fit items-center rounded-lg bg-card p-2">
+            <Image
+              src="/assets/logo.png"
+              alt="Mumbra Restaurant"
+              width={120}
+              height={40}
+              className="h-10 w-auto"
+            />
+          </div>
           <p className="text-sm leading-relaxed opacity-80 max-w-md text-pretty">
             Mumbra Restaurant — Your Unlimited Celebration Destination. Serving authentic Indian
             &amp; Indo-Chinese flavours at Railway Station Road, Mumbra, Thane.
